@@ -1,29 +1,19 @@
-import React from "react";
-import Poster from "../Poster/Poster.component";
+// import React from "react";
+// import Poster from "../Poster/Poster.component";
+// import PremierImages from "../../Config/TempPoster.config";
 
-const PremierCard = ()=>{ 
 
-    // arr of object
-    const PremierArray =[
-        {
-            // obj1
-        },
-        {
-            // obj2
-        },
-        {
-            // obj3
-        },
-        {
-            // obj4
-        }
-    ];
+// const PremierCard = ()=>{ 
 
-    return (
-        <>
-            <Poster {...PremierArray}/>
-        </>
-    );
-}
+//     return (
+//         <>
+//             {
+//               PremierImages.map(()=>(
 
-export default PremierCard;
+//               ))  
+//             }
+//         </>
+//     );
+// }
+
+// export default PremierCard;

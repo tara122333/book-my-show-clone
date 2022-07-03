@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import settings from "../../Config/PosterCarousel.config";
 
 const EntertainmentCard = (props)=>{
     return (
@@ -12,41 +13,6 @@ const EntertainmentCard = (props)=>{
 }
 
 const EntertainmentCardSlider = ()=>{
-    // settings of react-slider and responsive break points
-    const settings = {
-        infinite: false,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        InitialSlide: 0,
-        responsive: [
-            {
-              breakpoints: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 2,
-                    infinite: true
-                }
-            },
-            {
-              breakpoints: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    InitialSlide: 1,
-                    infinite: true,
-                }
-            },
-            {
-              breakpoints: 480,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    InitialSlide: 1,
-                    infinite: true,
-                }
-            },
-          ],
-};
 
     const EntertainmentsImages = [
         "https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:ote-MTM1KyBFdmVudHM%3D,otc-FFFFFF,otf-Roboto,ots-64,ox-48,oy-320,ott-b:w-300:q-80/workshops-collection-202007231330.png",
