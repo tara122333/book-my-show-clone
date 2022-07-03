@@ -23,6 +23,37 @@ const HomePageCard = ()=>{
                     />
                 </div>
             </div>
+            <div className="container mx-auto px-4 w-full flex flex-col gap-3">
+                    <PosterSlider 
+                        images="this"
+                        title="Event Happining for you"
+                    />
+            </div>
+            <div className="container mx-auto px-4 w-full flex flex-col gap-3">
+                    <PosterSlider 
+                        images="this"
+                        title="Online Streaming Events"
+                    />
+            </div>
+            <div className="container mx-auto px-4 w-full flex flex-col gap-3">
+                    <PosterSlider 
+                        images="this"
+                        title="Outdoor Events"
+                    />
+            </div>
+            <div className="container mx-auto px-4 w-full flex flex-col gap-3">
+                    <PosterSlider 
+                        images="this"
+                        title="Popular Events"
+                    />
+            </div>
+            <div className="container mx-auto px-4 w-full flex flex-col gap-3">
+                    <PosterSlider 
+                        images="this"
+                        title="The Latest Plays"
+                        subtitle="Brand new relases every friday"
+                    />
+            </div>
             
         </div>
             
