@@ -1,7 +1,7 @@
 import React from "react";
 
 export const NextArrow = (props)=>{
-// props
+    // props
     // className
     // style
     // onClick
