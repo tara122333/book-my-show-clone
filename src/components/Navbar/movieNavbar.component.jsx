@@ -1,5 +1,5 @@
 import React from "react";
-import {BiSearch,BiChevronDown,BiMenu} from 'react-icons/bi';
+import {BiSearch,BiChevronDown,BiMenu,BiChevronLeft,BiShareAlt} from 'react-icons/bi';
 
 const MovieNavbarLG = ()=>{
     return(
@@ -42,6 +42,13 @@ const MovieNavbarLG = ()=>{
 const MovieNavbarMd = ()=>{
     return(
         <>
+            <div className="flex justify-between items-center text-white">
+                <div className="flex gap-3 justify-center items-center">
+                    <BiChevronLeft className="text-2xl md:text-3xl"/>
+                    <h3 className="text-lg md:text-xl font-bold">Morbuis</h3>
+                </div>
+                    <BiShareAlt className="text-2xl md:text-3xl"/>
+            </div>
         </>
     );
 }
@@ -50,14 +57,14 @@ const MovieNavbarMd = ()=>{
 const MovieNavbar = ()=>{
     return(
         <>
-        <nav>
-            <div className="lg:hidden">
+        <nav className="absolute inset-x-0 z-30 bg-opacity-10 backdrop-filter backdrop-blur-lg lg:relative lg:bg-tara-700 p-4">
+            <div className="md:hidden">
                 <MovieNavbarMd />
             </div>
-            <div className="lg:hidden">
+            <div className="hidden md:block lg:hidden">
                 <MovieNavbarMd />
             </div>
-            <div className="hidden lg:flex w-full bg-tara-700 p-4">
+            <div className="hidden lg:flex w-full">
                 <MovieNavbarLG />
             </div>
         </nav>
