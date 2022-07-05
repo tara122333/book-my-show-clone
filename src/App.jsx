@@ -1,6 +1,7 @@
 import React from "react";
 import DefaultHOC from "./HOC/Default.HOC";
 import { Routes,Route } from "react-router-dom";
+import MovieHOC from "./HOC/MovieHOC";
 
 
 function App() {
@@ -9,8 +10,8 @@ function App() {
     <div>
       <Routes>
           <Route path="/" element={<DefaultHOC />} />
+          <Route path="/movie:id" element={<MovieHOC />} />
       </Routes>
-      {/* <DefaultHOC /> */}
     </div>
   </>
   );

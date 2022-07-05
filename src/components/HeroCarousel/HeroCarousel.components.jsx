@@ -60,7 +60,7 @@ const HeroCarousel = ()=>{
             <HeroSlider {...settingsLG}>
                     {
                         images.map((image)=>(
-                            <div className="h-96 w-full">
+                            <div className="h-96 w-full px-4 py-2">
                                 <img 
                                 src={image} 
                                 alt="heroimage" 

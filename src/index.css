@@ -4,10 +4,12 @@
 
 
 .slick-prev{
-    left: 3% !important;
+    left: 1% !important;
+    font-size: 40px;
     z-index: 1;
 }
 .slick-next{
-    right: 3% !important;
+    right: 1% !important;
     z-index: 1;
+    font-size: 40px;
 }

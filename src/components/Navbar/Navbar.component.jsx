@@ -46,7 +46,7 @@ const NavLg = () =>{
                     </div>
                     <div className="flex justify-center items-center bg-white py-2 px-3 w-full gap-3 rounded-md">
 
-                        <BiSearch />
+                        <BiSearch className="text-tara-700 text-xl"/>
                         <input type="search" placeholder="Search for movies, events, Plays, Sports and Activities." className="w-full bg-transparent border-none focus:outline-none"/>
                     </div>
                 </div>
@@ -66,7 +66,6 @@ const NavLg = () =>{
                         <BiMenu className="w-full h-full"/>
 
                     </div>
-                    {/* menu react icon */}
                 </div>
             </div>
         </>
