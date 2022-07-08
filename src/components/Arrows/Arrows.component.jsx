@@ -6,6 +6,7 @@ export const NextArrow = (props)=>{
     // style
     // onClick
 
+    
     return(
         <>
             <div className={props.className} style={{...props.style, backgroundColor:"black"}} onClick={props.onClick} />

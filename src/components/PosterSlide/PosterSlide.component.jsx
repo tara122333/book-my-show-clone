@@ -6,7 +6,7 @@ import Poster from "../Poster/Poster.component";
 
 
 const PosterSlider = (props) => {
-    // const sliderConfig = settings;
+    const sliderConfig = props.config ? props.config : settings;
     return (
         <>
             <div>
@@ -17,7 +17,7 @@ const PosterSlider = (props) => {
                     {props.subtitle}
                 </p>
             </div>
-            <Slider {...settings}>
+            <Slider {...sliderConfig}>
                 {
                     PremierImages.map((image) => (
                         <Poster {...image} isDark={props.isDark} />

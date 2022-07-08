@@ -1,8 +1,47 @@
 import React from "react";
 import MovieHeroCard from "../components/MovieHero/movieHero.component";
 import {FaCcVisa, FaCcApplePay} from 'react-icons/fa'
+import Cast from "../components/Cast/Cast.component";
+import PosterSlider from "../components/PosterSlide/PosterSlide.component";
 
+import Slider from "react-slick";
 const MoviePage = ()=>{
+
+    //  settings
+
+const settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
     return(
         <>
             <MovieHeroCard />
@@ -43,6 +82,46 @@ const MoviePage = ()=>{
                         </div>
                     </div>
                 </div>
+                </div>
+
+                <div className="my-8">
+                    <hr />
+                </div>
+
+                <div className="my-8">
+                    <h3 className="text-gray-700 text-xl font-bold mb-4">Cast & Crew</h3>
+                    <div className="flex flex-wrap gap-4">
+                        <Cast image="https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/scarlett-johansson-2067-22-12-2017-09-56-57.jpg" castName="Henry Cavil" role="Superman" />
+                        <Cast image="https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/scarlett-johansson-2067-22-12-2017-09-56-57.jpg" castName="Henry Cavil" role="Superman" />
+                        <Cast image="https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/scarlett-johansson-2067-22-12-2017-09-56-57.jpg" castName="Henry Cavil" role="Superman" />
+                        <Cast image="https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/scarlett-johansson-2067-22-12-2017-09-56-57.jpg" castName="Henry Cavil" role="Superman" />
+                    </div>
+                </div>
+
+                <div className="my-8">
+                    <hr />
+                </div>
+
+                <div className="my-8">
+                    <PosterSlider 
+                        config={settings}
+                        images="this"
+                        title="You Might Also Like"
+                        isDark={false}
+                    />
+                </div>
+
+                <div className="my-8">
+                    <hr />
+                </div>
+                
+                <div className="my-8">
+                    <PosterSlider 
+                        config={settings}
+                        images="this"
+                        title="You Might Also Like"
+                        isDark={false}
+                    />
                 </div>
             </div>
         </>
