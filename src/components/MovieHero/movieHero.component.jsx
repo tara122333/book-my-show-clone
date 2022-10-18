@@ -17,11 +17,6 @@ const MovieHeroCard = ()=>{
                     alt="Movieimage" className="w-full h-full rounded-md"/>
             </div>
 
-
-
-
-
-
             <div className="hidden md:block w-full relative lg:hidden">
                 <div className="w-full h-56 bg-opacity-50 absolute bg-black z-10 bottom-0" />
                     <div className="absolute z-20 bottom-4">
@@ -29,13 +24,6 @@ const MovieHeroCard = ()=>{
                     </div>
                     <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}  alt="Movieimage" className="w-full h-full rounded-lg"/>
             </div>
-
-
-
-
-
-
-
 
             <div
           className="relative hidden w-full lg:block"

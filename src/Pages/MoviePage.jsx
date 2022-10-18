@@ -1,14 +1,30 @@
 import React,{useEffect,useState} from "react";
+import Slider from "react-slick";
 import MovieHeroCard from "../components/MovieHero/movieHero.component";
 import {FaCcVisa, FaCcApplePay} from 'react-icons/fa'
 import Cast from "../components/Cast/Cast.component";
 import PosterSlider from "../components/PosterSlide/PosterSlide.component";
 import axios from "axios";
+import { MovieContext } from "../context/movie.context";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { NextArrow,PrevArrow } from "../components/Arrows/Arrows.component";
+
 
 const MoviePage = ()=>{
-
+    const { id } = useParams();
+    const { movie } = useContext(MovieContext);
+    const [cast, setCast] = useState([]);
     const [topRatedMovies, setTopRatedMovies] = useState([]);
     const [upcomingMovies, setUpcomingMovies] = useState([]);
+
+    useEffect(() => {
+      const requestCast = async () => {
+        const getCast = await axios.get(`/movie/${id}/credits`);
+        setCast(getCast.data.cast);
+      };
+      requestCast();
+    }, [id]);
 
     useEffect(() => {
         const requestTopRatedMovies = async () => {
@@ -27,6 +43,7 @@ const MoviePage = ()=>{
     
         requestUpcomingMovies();
       }, []);
+
 
 
 const settings = {
@@ -61,6 +78,41 @@ const settings = {
       },
     ],
   };
+  const settingsCast = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 4,
+    autoplay: true,
+    initialSlide: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
     return(
         <>
@@ -70,8 +122,10 @@ const settings = {
                     <h3 className="text-2xl font-bold text-gray-700">
                     About the movie
                     </h3>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga ipsum voluptate dicta exercitationem, distinctio doloremque ipsam reprehenderit mollitia, modi consequuntur ea perferendis repellat iure dolorum.
+                    <p className="font-semibold">
+                        {
+                          movie.overview
+                        }
                     </p>
                 </div>
                 <div className="my-8">
@@ -110,12 +164,24 @@ const settings = {
 
                 <div className="my-8">
                     <h3 className="text-gray-700 text-xl font-bold mb-4">Cast & Crew</h3>
-                    <div className="flex flex-wrap gap-4">
-                        <Cast image="https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/scarlett-johansson-2067-22-12-2017-09-56-57.jpg" castName="Henry Cavil" role="Superman" />
-                        <Cast image="https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/scarlett-johansson-2067-22-12-2017-09-56-57.jpg" castName="Henry Cavil" role="Superman" />
-                        <Cast image="https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/scarlett-johansson-2067-22-12-2017-09-56-57.jpg" castName="Henry Cavil" role="Superman" />
-                        <Cast image="https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/scarlett-johansson-2067-22-12-2017-09-56-57.jpg" castName="Henry Cavil" role="Superman" />
-                    </div>
+                        
+                        {/* {
+                          cast.map((castdata)=>(
+                            <Cast image={`https://image.tmdb.org/t/p/original/${castdata.profile_path}`} 
+                            castName={castdata.original_name}
+                            role={castdata.character} />
+                          ))
+                        } */}
+
+                        <Slider {...settingsCast}>
+                        {
+                          cast.map((castdata)=>(
+                            <Cast image={`https://image.tmdb.org/t/p/original/${castdata.profile_path}`} 
+                            castName={castdata.original_name}
+                            role={castdata.character} />
+                          ))
+                        }
+                        </Slider>
                 </div>
 
                 <div className="my-8">
