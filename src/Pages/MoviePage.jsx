@@ -15,8 +15,9 @@ const MoviePage = ()=>{
     const { id } = useParams();
     const { movie } = useContext(MovieContext);
     const [cast, setCast] = useState([]);
-    const [topRatedMovies, setTopRatedMovies] = useState([]);
-    const [upcomingMovies, setUpcomingMovies] = useState([]);
+    const [similarMovies, setSimilarMovies] = useState([]);
+  const [recommended, setRecommended] = useState([]);
+
 
     useEffect(() => {
       const requestCast = async () => {
@@ -27,22 +28,24 @@ const MoviePage = ()=>{
     }, [id]);
 
     useEffect(() => {
-        const requestTopRatedMovies = async () => {
-          const getTopRatedMovies = await axios.get("/movie/top_rated");
-          setTopRatedMovies(getTopRatedMovies.data.results);
-        };
-    
-        requestTopRatedMovies();
-      }, []);
-    
-      useEffect(() => {
-        const requestUpcomingMovies = async () => {
-          const getUpcomingMovies = await axios.get("/movie/upcoming");
-          setUpcomingMovies(getUpcomingMovies.data.results);
-        };
-    
-        requestUpcomingMovies();
-      }, []);
+      const requestSimilarMovies = async () => {
+        const getSimilarMovies = await axios.get(`/movie/${id}/similar`);
+        setSimilarMovies(getSimilarMovies.data.results);
+      };
+  
+      requestSimilarMovies();
+    }, [id]);
+  
+    useEffect(() => {
+      const requestRecommendedMovies = async () => {
+        const getRecommendedMovies = await axios.get(
+          `/movie/${id}/recommendations`
+        );
+        setRecommended(getRecommendedMovies.data.results);
+      };
+  
+      requestRecommendedMovies();
+    }, [id]);
 
 
 
@@ -191,7 +194,7 @@ const settings = {
                 <div className="my-8">
                     <PosterSlider 
                         config={settings}
-                        images={topRatedMovies}
+                        images={similarMovies}
                         title="You Might Also Like"
                         isDark={false}
                     />
@@ -204,7 +207,7 @@ const settings = {
                 <div className="my-8">
                     <PosterSlider 
                         config={settings}
-                        images={upcomingMovies}
+                        images={recommended}
                         title="You Might Also Like"
                         isDark={false}
                     />
