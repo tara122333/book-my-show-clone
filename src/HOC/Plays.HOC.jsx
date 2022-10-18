@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
-import PlaysLayout from '../layouts/plays.layout';
+import PlaysLayout from '../layouts/Plays.layout';
 
 
 // Layout

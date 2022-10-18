@@ -1,18 +1,33 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import MovieHeroCard from "../components/MovieHero/movieHero.component";
 import {FaCcVisa, FaCcApplePay} from 'react-icons/fa'
 import Cast from "../components/Cast/Cast.component";
 import PosterSlider from "../components/PosterSlide/PosterSlide.component";
-
-import Slider from "react-slick";
-
+import axios from "axios";
 
 const MoviePage = ()=>{
 
-    
-    
+    const [topRatedMovies, setTopRatedMovies] = useState([]);
+    const [upcomingMovies, setUpcomingMovies] = useState([]);
 
-    //  settings
+    useEffect(() => {
+        const requestTopRatedMovies = async () => {
+          const getTopRatedMovies = await axios.get("/movie/top_rated");
+          setTopRatedMovies(getTopRatedMovies.data.results);
+        };
+    
+        requestTopRatedMovies();
+      }, []);
+    
+      useEffect(() => {
+        const requestUpcomingMovies = async () => {
+          const getUpcomingMovies = await axios.get("/movie/upcoming");
+          setUpcomingMovies(getUpcomingMovies.data.results);
+        };
+    
+        requestUpcomingMovies();
+      }, []);
+
 
 const settings = {
     infinite: false,
@@ -50,7 +65,7 @@ const settings = {
     return(
         <>
             <MovieHeroCard />
-            <div className="container px-4 my-5 lg:w-2/3 lg:ml-20">
+             <div className="container px-4 my-5 lg:w-2/3 lg:ml-20">
                 <div className="flex flex-col items-start gap-3">
                     <h3 className="text-2xl font-bold text-gray-700">
                     About the movie
@@ -110,7 +125,7 @@ const settings = {
                 <div className="my-8">
                     <PosterSlider 
                         config={settings}
-                        images="this"
+                        images={topRatedMovies}
                         title="You Might Also Like"
                         isDark={false}
                     />
@@ -123,7 +138,7 @@ const settings = {
                 <div className="my-8">
                     <PosterSlider 
                         config={settings}
-                        images="this"
+                        images={upcomingMovies}
                         title="You Might Also Like"
                         isDark={false}
                     />

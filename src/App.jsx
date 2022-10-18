@@ -2,8 +2,14 @@ import React from "react";
 import axios from "axios";
 import MovieHOC from "./HOC/MovieHOC";
 import PlaysHOC from "./HOC/Plays.HOC";
-import HomePageCard from "./Pages/Home.page";
 import DefaultHOC from './HOC/Default.HOC';
+import HomePageCard from "./Pages/Home.page";
+import Plays from './Pages/Plays.page';
+import MoviePage from "./Pages/MoviePage";
+
+
+
+
 
 
 // axios
@@ -17,8 +23,8 @@ function App() {
   <>
     <div>
           <DefaultHOC path="/" exact element={HomePageCard} />
-          {/* <Route path="/movie/:id" element={<MovieHOC />} />
-          <Route path="/plays" element={<PlaysHOC />} /> */}
+          <MovieHOC path="/movie/:id" exact element={MoviePage} />
+          <PlaysHOC path="/plays" exact element={Plays} />
     </div>
   </>
   );

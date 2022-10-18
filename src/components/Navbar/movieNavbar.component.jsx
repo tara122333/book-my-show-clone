@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import {BiSearch,BiChevronDown,BiMenu,BiChevronLeft,BiShareAlt} from 'react-icons/bi';
+import { MovieContext } from "../../context/movie.context";
 
 const MovieNavbarLG = ()=>{
+    
     return(
         <>
             <div className="container mx-auto px-4 flex justify-between text-white">
@@ -40,12 +42,13 @@ const MovieNavbarLG = ()=>{
 }
 
 const MovieNavbarMd = ()=>{
+    const { movie } = useContext(MovieContext);
     return(
         <>
             <div className="flex justify-between items-center text-white">
                 <div className="flex gap-3 justify-center items-center">
                     <BiChevronLeft className="text-2xl md:text-3xl"/>
-                    <h3 className="text-lg md:text-xl font-bold">Morbuis</h3>
+                    <h3 className="text-lg md:text-xl font-bold">{movie.original_title}</h3>
                 </div>
                     <BiShareAlt className="text-2xl md:text-3xl"/>
             </div>
