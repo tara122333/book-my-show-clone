@@ -1,7 +1,5 @@
-import React,{useEffect,useState} from "react";
-import axios from "axios";
+import React from "react";
 import Slider from "react-slick";
-import PremierImages from "../../Config/TempPoster.config";
 import settings from "../../Config/PosterCarousel.config";
 import Poster from "../Poster/Poster.component";
 
