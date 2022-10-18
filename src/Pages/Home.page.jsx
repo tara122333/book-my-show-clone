@@ -5,6 +5,9 @@ import PosterSlider from "../components/PosterSlide/PosterSlide.component";
 const HomePageCard = ()=>{
 
     const [popularMovies, setPopularMovies] = useState([]);
+    const [topRatedMovies, setTopRatedMovies] = useState([]);
+    const [upcomingMovies, setUpcomingMovies] = useState([]);
+    const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
 
     useEffect(()=>{
         const requestPopularMovies = async()=>{
@@ -15,6 +18,32 @@ const HomePageCard = ()=>{
         requestPopularMovies();
     },[])
 
+    useEffect(() => {
+        const requestTopRatedMovies = async () => {
+          const getTopRatedMovies = await axios.get("/movie/top_rated");
+          setTopRatedMovies(getTopRatedMovies.data.results);
+        };
+    
+        requestTopRatedMovies();
+      }, []);
+    
+      useEffect(() => {
+        const requestUpcomingMovies = async () => {
+          const getUpcomingMovies = await axios.get("/movie/upcoming");
+          setUpcomingMovies(getUpcomingMovies.data.results);
+        };
+    
+        requestUpcomingMovies();
+      }, []);
+      
+      useEffect(() => {
+        const requestNowPlayingMovies = async () => {
+          const getNowPlayingMovies = await axios.get("/movie/now_playing");
+          setNowPlayingMovies(getNowPlayingMovies.data.results);
+        };
+    
+        requestNowPlayingMovies();
+      }, []);
 
     return(
         <>
@@ -39,25 +68,25 @@ const HomePageCard = ()=>{
             </div>
             <div className="container mx-auto px-4 w-full flex flex-col gap-3">
                     <PosterSlider 
-                        images={popularMovies}
+                        images={topRatedMovies}
                         title="Event Happining for you"
                     />
             </div>
             <div className="container mx-auto px-4 w-full flex flex-col gap-3">
                     <PosterSlider 
-                        images={popularMovies}
+                        images={upcomingMovies}
                         title="Online Streaming Events"
                     />
             </div>
             <div className="container mx-auto px-4 w-full flex flex-col gap-3">
                     <PosterSlider 
-                        images={popularMovies}
+                        images={nowPlayingMovies}
                         title="Outdoor Events"
                     />
             </div>
             <div className="container mx-auto px-4 w-full flex flex-col gap-3">
                     <PosterSlider 
-                        images={popularMovies}
+                        images={topRatedMovies}
                         title="Popular Events"
                     />
             </div>
