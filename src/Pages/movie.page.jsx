@@ -5,7 +5,12 @@ import Cast from "../components/Cast/Cast.component";
 import PosterSlider from "../components/PosterSlide/PosterSlide.component";
 
 import Slider from "react-slick";
+
+
 const MoviePage = ()=>{
+
+    
+    
 
     //  settings
 

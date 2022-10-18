@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
+import axios from "axios";
 import Slider from "react-slick";
 import PremierImages from "../../Config/TempPoster.config";
 import settings from "../../Config/PosterCarousel.config";
@@ -6,7 +7,21 @@ import Poster from "../Poster/Poster.component";
 
 
 const PosterSlider = (props) => {
+
+
+    const [popularMovies, setPopularMovies] = useState([]);
+
+    useEffect(()=>{
+        const requestPopularMovies = async()=>{
+            const getPopularMovies = await axios.get("/movie/now_playing");
+            console.log(getPopularMovies);
+            setPopularMovies(getPopularMovies.data.results);
+        }
+        requestPopularMovies();
+    },[])
+
     const sliderConfig = props.config ? props.config : settings;
+
     return (
         <>
             <div>
@@ -19,7 +34,7 @@ const PosterSlider = (props) => {
             </div>
             <Slider {...sliderConfig}>
                 {
-                    PremierImages.map((image) => (
+                    props.images.map((image) => (
                         <Poster {...image} isDark={props.isDark} />
                     ))
                 }
