@@ -6,7 +6,7 @@ const EntertainmentCard = (props)=>{
     return (
         <>
             <div className="w-full h-48 px-2">
-                <img src={props.src} alt="Entertainment image" className="w-full h-full rounded-xl"/>
+                <img src={props.src} alt="Entertainment" className="w-full h-full rounded-xl"/>
             </div>
         </>
     );
