@@ -10,13 +10,15 @@ const MovieLayout = (props) =>{
 
     const { movie, setMovie } = useContext(MovieContext);
 
+    console.log(movie);
+
     useEffect(() => {
         const requestMovie = async () => {
         const getMovieData = await axios.get(`/movie/${id}`);
         setMovie(getMovieData.data);
         };
         requestMovie();
-    }, [id]);
+    });
     
     return <div>
         <MovieNavbar />
