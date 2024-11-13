@@ -25,7 +25,8 @@ function App() {
   return (
   <>
     <div>
-          <DefaultHOC path="/" exact element={HomePageCard} />
+{/*           <DefaultHOC path="/" exact element={HomePageCard} /> */}
+          <DefaultHOC path="*" exact element={HomePageCard} />
           <MovieHOC path="/movie/:id" exact element={MoviePage} />
           <PlaysHOC path="/plays" exact element={Plays} />
     </div>
