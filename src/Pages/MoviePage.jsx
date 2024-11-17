@@ -1,55 +1,51 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import MovieHeroCard from "../components/MovieHero/movieHero.component";
-import {FaCcVisa, FaCcApplePay} from 'react-icons/fa'
+import { FaCcVisa, FaCcApplePay } from "react-icons/fa";
 import Cast from "../components/Cast/Cast.component";
 import PosterSlider from "../components/PosterSlide/PosterSlide.component";
 import axios from "axios";
 import { MovieContext } from "../context/movie.context";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { NextArrow,PrevArrow } from "../components/Arrows/Arrows.component";
+import { NextArrow, PrevArrow } from "../components/Arrows/Arrows.component";
 
-
-const MoviePage = ()=>{
-    const { id } = useParams();
-    const { movie } = useContext(MovieContext);
-    const [cast, setCast] = useState([]);
-    const [similarMovies, setSimilarMovies] = useState([]);
+const MoviePage = () => {
+  const { id } = useParams();
+  const { movie } = useContext(MovieContext);
+  const [cast, setCast] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
   const [recommended, setRecommended] = useState([]);
 
+  useEffect(() => {
+    const requestCast = async () => {
+      const getCast = await axios.get(`/movie/${id}/credits`);
+      setCast(getCast.data.cast);
+    };
+    requestCast();
+  }, [id]);
 
-    useEffect(() => {
-      const requestCast = async () => {
-        const getCast = await axios.get(`/movie/${id}/credits`);
-        setCast(getCast.data.cast);
-      };
-      requestCast();
-    }, [id]);
+  useEffect(() => {
+    const requestSimilarMovies = async () => {
+      const getSimilarMovies = await axios.get(`/movie/${id}/similar`);
+      setSimilarMovies(getSimilarMovies.data.results);
+    };
 
-    useEffect(() => {
-      const requestSimilarMovies = async () => {
-        const getSimilarMovies = await axios.get(`/movie/${id}/similar`);
-        setSimilarMovies(getSimilarMovies.data.results);
-      };
-  
-      requestSimilarMovies();
-    }, [id]);
-  
-    useEffect(() => {
-      const requestRecommendedMovies = async () => {
-        const getRecommendedMovies = await axios.get(
-          `/movie/${id}/recommendations`
-        );
-        setRecommended(getRecommendedMovies.data.results);
-      };
-  
-      requestRecommendedMovies();
-    }, [id]);
+    requestSimilarMovies();
+  }, [id]);
 
+  useEffect(() => {
+    const requestRecommendedMovies = async () => {
+      const getRecommendedMovies = await axios.get(
+        `/movie/${id}/recommendations`
+      );
+      setRecommended(getRecommendedMovies.data.results);
+    };
 
+    requestRecommendedMovies();
+  }, [id]);
 
-const settings = {
+  const settings = {
     infinite: false,
     speed: 500,
     slidesToShow: 3,
@@ -117,58 +113,62 @@ const settings = {
     ],
   };
 
-    return(
-        <>
-            <MovieHeroCard />
-             <div className="container px-4 my-5 lg:w-2/3 lg:ml-20">
-                <div className="flex flex-col items-start gap-3">
-                    <h3 className="text-2xl font-bold text-gray-700">
-                    About the movie
-                    </h3>
-                    <p className="font-semibold">
-                        {
-                          movie.overview
-                        }
-                    </p>
-                </div>
-                <div className="my-8">
-                    <hr />
-                </div>
+  return (
+    <>
+      <MovieHeroCard />
+      <div className="container px-4 my-5 lg:w-2/3 lg:ml-20">
+        <div className="flex flex-col items-start gap-3">
+          <h3 className="text-2xl font-bold text-gray-700">About the movie</h3>
+          <p className="font-semibold">{movie.overview}</p>
+        </div>
+        <div className="my-8">
+          <hr />
+        </div>
 
-                <div className="my-8">
-                    <h3 className="text-gray-700 text-xl font-bold mb-4">Application offer</h3>
-                    <div className="flex flex-col gap-3 lg:flex-row">
-                    <div className="flex gap-3 bg-yellow-100 items-start p-2 border-dashed border-4 border-yellow-300">
-                        <div className="w-8 h-8">
+        <div className="my-8">
+          <h3 className="text-gray-700 text-xl font-bold mb-4">
+            Application offer
+          </h3>
+          <div className="flex flex-col gap-3 lg:flex-row">
+            <div className="flex gap-3 bg-yellow-100 items-start p-2 border-dashed border-4 border-yellow-300">
+              <div className="w-8 h-8">
+                <FaCcVisa className="w-full h-full" />
+              </div>
+              <div className="flex flex-col items-start">
+                <h3 className="text-gray-700 text-xl font-bold">
+                  Rupay Stream Offer
+                </h3>
+                <p className="text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                  illo!
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3 bg-yellow-100 items-start p-2 border-dashed border-4 border-yellow-300">
+              <div className="w-8 h-8">
+                <FaCcApplePay className="w-full h-full" />
+              </div>
+              <div className="flex flex-col items-start">
+                <h3 className="text-gray-700 text-xl font-bold">
+                  Rupay Stream Offer
+                </h3>
+                <p className="text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                  illo!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                        <FaCcVisa className="w-full h-full" />
-                        </div>
-                        <div className="flex flex-col items-start">
-                            <h3 className="text-gray-700 text-xl font-bold">Rupay Stream Offer</h3>
-                            <p className="text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, illo!</p>
-                        </div>
-                    </div>
-                    <div className="flex gap-3 bg-yellow-100 items-start p-2 border-dashed border-4 border-yellow-300">
-                        <div className="w-8 h-8">
+        <div className="my-8">
+          <hr />
+        </div>
 
-                        <FaCcApplePay className="w-full h-full" />
-                        </div>
-                        <div className="flex flex-col items-start">
-                            <h3 className="text-gray-700 text-xl font-bold">Rupay Stream Offer</h3>
-                            <p className="text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, illo!</p>
-                        </div>
-                    </div>
-                </div>
-                </div>
+        <div className="my-8">
+          <h3 className="text-gray-700 text-xl font-bold mb-4">Cast & Crew</h3>
 
-                <div className="my-8">
-                    <hr />
-                </div>
-
-                <div className="my-8">
-                    <h3 className="text-gray-700 text-xl font-bold mb-4">Cast & Crew</h3>
-                        
-                        {/* {
+          {/* {
                           cast.map((castdata)=>(
                             <Cast image={`https://image.tmdb.org/t/p/original/${castdata.profile_path}`} 
                             castName={castdata.original_name}
@@ -176,44 +176,44 @@ const settings = {
                           ))
                         } */}
 
-                        <Slider {...settingsCast}>
-                        {
-                          cast.map((castdata)=>(
-                            <Cast image={`https://image.tmdb.org/t/p/original/${castdata.profile_path}`} 
-                            castName={castdata.original_name}
-                            role={castdata.character} />
-                          ))
-                        }
-                        </Slider>
-                </div>
+          <Slider {...settingsCast}>
+            {cast.map((castdata) => (
+              <Cast
+                image={`https://image.tmdb.org/t/p/original/${castdata.profile_path}`}
+                castName={castdata.original_name}
+                role={castdata.character}
+              />
+            ))}
+          </Slider>
+        </div>
 
-                <div className="my-8">
-                    <hr />
-                </div>
+        <div className="my-8">
+          <hr />
+        </div>
 
-                <div className="my-8">
-                    <PosterSlider 
-                        config={settings}
-                        images={similarMovies}
-                        title="You Might Also Like"
-                        isDark={false}
-                    />
-                </div>
+        <div className="my-8">
+          <PosterSlider
+            config={settings}
+            images={similarMovies}
+            title="You Might Also Like"
+            isDark={false}
+          />
+        </div>
 
-                <div className="my-8">
-                    <hr />
-                </div>
-                
-                <div className="my-8">
-                    <PosterSlider 
-                        config={settings}
-                        images={recommended}
-                        title="You Might Also Like"
-                        isDark={false}
-                    />
-                </div>
-            </div>
-        </>
-    );
-}
+        <div className="my-8">
+          <hr />
+        </div>
+
+        <div className="my-8">
+          <PosterSlider
+            config={settings}
+            images={recommended}
+            title="You Might Also Like"
+            isDark={false}
+          />
+        </div>
+      </div>
+    </>
+  );
+};
 export default MoviePage;

@@ -1,6 +1,6 @@
-import { Disclosure } from '@headlessui/react'
+import { Disclosure } from "@headlessui/react";
 
-const PlaysFilter = ()=> {
+const PlaysFilter = () => {
   return (
     <Disclosure>
       <Disclosure.Button className="py-2">
@@ -11,7 +11,7 @@ const PlaysFilter = ()=> {
         team.
       </Disclosure.Panel>
     </Disclosure>
-  )
-}
+  );
+};
 
 export default PlaysFilter;
